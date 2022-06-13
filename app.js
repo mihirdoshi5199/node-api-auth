@@ -11,6 +11,17 @@ app.get('/api', (req,res)=> {
     });
 });
 
+app.get('/submitData', (req,res)=>{
+    var query = require('url').parse(req.url,true).query;
+    console.log(query);
+    console.log("submit data calling");
+    res.write('<html>');
+    res.write('<head> <title>Response</title> </head>');
+    res.write(' <body>Data : Name - '+query.name+'</body>');
+    res.write('</html>');
+
+  
+});
 
 app.post('/api/posts', verifyToken, (req,res) => {
     jwt.verify(req.token, 'secretkey', (err, authData) => {
